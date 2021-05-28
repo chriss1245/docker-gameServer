@@ -1,0 +1,14 @@
+version: "3.9"
+services:
+  game-server:
+    build: ./apacheIntegration-gameServer
+    volumes:
+      - ./appData:/usr/src/app
+    ports:
+      - 80:80
+  
+  website:
+    image: app2
+    volumes:
+      - ./appData:/var/www/html
+      

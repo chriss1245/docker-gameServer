@@ -1,0 +1,3 @@
+[submodule "apache-gameServer"]
+	path = apache-gameServer
+	url = https://github.com/chriss1245/apache-gameServer
