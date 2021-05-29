@@ -4,24 +4,25 @@ FROM ubuntu
 # libraries
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
+RUN apt-get -y install apt-utils
 RUN apt-get -y install python3
 RUN apt-get -y install python3-pip
 RUN apt-get -y install apache2
 RUN apt-get -y install libapache2-mod-wsgi
 
 # dependencies of gamesever
-COPY ./backend_gameServer/requirements.txt /var/www/backend_gameServer/requirements.txt
+COPY ./apache-gameServer/backend_gameServer/requirements.txt /var/www/backend_gameServer/requirements.txt
 RUN pip3 install -r /var/www/backend_gameServer/requirements.txt
 
 # setting up apache
-COPY ./backend_gameServer.conf /etc/apache2/sites-available/backend_gameServer.conf
+COPY ./apache-gameServer/backend_gameServer.conf /etc/apache2/sites-available/backend_gameServer.conf
 
 RUN a2ensite backend_gameServer
 RUN a2enmod wsgi
 
-COPY ./backend_gameServer.wsgi /var/www/backend-gameServer/backend_gameServer.wsgi
+COPY ./apache-gameServer/backend_gameServer.wsgi /var/www/backend-gameServer/backend_gameServer.wsgi
 COPY ./run.py /var/www/backend-gameServer/run.py
-COPY ./backend-gameServer /var/www/backend-gameServer/backend-gameServer/
+COPY ./apache-gameServer/backend-gameServer /var/www/backend-gameServer/backend-gameServer/
 
 RUN a2dissite 000-default.conf
 RUN a2ensite backend-gameServer.conf
