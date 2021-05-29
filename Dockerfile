@@ -25,7 +25,7 @@ COPY ./run.py /var/www/backend-gameServer/run.py
 COPY ./apache-gameServer/backend-gameServer /var/www/backend-gameServer/backend-gameServer/
 
 RUN a2dissite 000-default.conf
-RUN a2ensite backend-gameServer.conf
+RUN a2ensite backend_gameServer.conf
 
 #link apache config to docker logs
 RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
