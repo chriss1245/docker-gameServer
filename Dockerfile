@@ -15,12 +15,12 @@ COPY ./apache-gameServer/backend-gameServer/requirements.txt /var/www/backend-ga
 RUN pip3 install -r /var/www/backend-gameServer/requirements.txt
 
 # setting up apache
-COPY ./apache-gameServer/backend-gameServer.conf /etc/apache2/sites-available/backend-gameServer.conf
+COPY ./apache-gameServer/backend_gameServer.conf /etc/apache2/sites-available/backend_gameServer.conf
 
 RUN a2ensite backend-gameServer
 RUN a2enmod wsgi
 
-COPY ./apache-gameServer/backend-gameServer.wsgi /var/www/backend-gameServer/backend-gameServer.wsgi
+COPY ./apache-gameServer/backend_gameServer.wsgi /var/www/backend-gameServer/backend_gameServer.wsgi
 COPY ./run.py /var/www/backend-gameServer/run.py
 COPY ./apache-gameServer/backend-gameServer /var/www/backend-gameServer/backend-gameServer/
 
