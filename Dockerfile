@@ -34,4 +34,4 @@ RUN ln -sf /proc/self/fd/1 /var/log/apache2/access.log && \
 EXPOSE 80
 WORKDIR /var/www/backend-gameServer/
 
-CMD /usr/sbin/apache2ctl start
+CMD /usr/sbin/apache2ctl restart
