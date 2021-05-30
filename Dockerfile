@@ -19,10 +19,11 @@ COPY ./apache-gameServer/backend_gameServer.conf /etc/apache2/sites-available/ba
  
 RUN a2ensite backend_gameServer
 RUN a2enmod wsgi
+RUN a2enmod headers
 
 COPY ./apache-gameServer/backend_gameServer.wsgi /var/www/backend-gameServer/backend_gameServer.wsgi
 COPY ./apache-gameServer/run.py /var/www/backend-gameServer/run.py
-COPY ./apache-gameServer/backend-gameServer /var/www/backend-gameServer/backend-gameServer/
+COPY ./apache-gameServer/backend-gameServer /var/www/backend-gameServer/
 
 RUN a2dissite 000-default.conf
 RUN a2ensite backend_gameServer.conf
